@@ -71,7 +71,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 #toast.on{opacity:1;transform:translate(-50%,0)}
 @media (max-width:760px){nav a:not(.btn){display:none}.two{grid-template-columns:1fr}section{padding:70px 0}.map{height:320px}}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important;animation-delay:0s!important}}
-@media (max-width:760px){.hero{height:auto;min-height:380px}}
+@media (max-width:760px){.hero{height:auto;min-height:380px}.hero:before{display:none}}
 .hero video::-webkit-media-controls,.hero video::-webkit-media-controls-start-playback-button,.hero video::-webkit-media-controls-panel{display:none!important;-webkit-appearance:none}
 
 /* mobile menu */
@@ -87,8 +87,6 @@ header .wrap{gap:10px}
 nav{margin-left:auto;gap:0}
 nav .btn{padding:10px 16px;font-size:15px}
 .menu{display:block}
-body:has(#hero) header{position:absolute;left:0;right:0;top:0;background:transparent;backdrop-filter:none;border-bottom:none;transition:background .25s ease,border-color .25s ease}
-body:has(#hero) header.scrolled{position:sticky;background:rgba(255,255,255,.93);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .mnav{display:block;position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);padding:6px 24px 14px;opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .2s ease,transform .2s ease,visibility 0s linear .2s;box-shadow:0 14px 24px rgba(27,26,23,.08)}
 header.open .mnav{opacity:1;visibility:visible;transform:none;transition:opacity .2s ease,transform .2s ease}
 .mnav a{display:block;padding:15px 2px;font-size:19px;font-family:"Cormorant Garamond",Georgia,serif;letter-spacing:.03em;border-bottom:1px solid var(--line)}
@@ -179,7 +177,6 @@ window.addEventListener('pageshow',go);
 ['pointerdown','touchstart','touchend','click','keydown','scroll','mousemove'].forEach(function(e){addEventListener(e,function(){if(v.paused)go()},{passive:true})})})();
 </script>
 <script>
-(function(){var h=document.querySelector('header');if(h&&document.getElementById('hero')){function sync(){h.classList.toggle('scrolled',window.scrollY>40)}sync();addEventListener('scroll',sync,{passive:true})}})();
 (function(){var h=document.querySelector('header'),b=h&&h.querySelector('.menu');if(!b)return;
 function set(o){h.classList.toggle('open',o);b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'Close menu':'Open menu')}
 b.addEventListener('click',function(e){e.stopPropagation();set(!h.classList.contains('open'))});
