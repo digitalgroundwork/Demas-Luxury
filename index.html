@@ -59,6 +59,12 @@ section h2{font-size:clamp(34px,5vw,52px);margin-bottom:12px}
 .dist{list-style:none;padding:0;margin:0 0 24px}
 .dist li{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line)}
 .map{width:100%;height:420px;border:1px solid var(--line);background:#eee9dd}
+.mapwrap{position:relative;width:100%;height:420px}
+.mapwrap .map{position:absolute;inset:0;height:100%}
+.mapwrap .ml{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#eee9dd;pointer-events:none;transition:opacity .3s ease;z-index:1}
+.mapwrap .ml:after{content:"";width:34px;height:34px;border-radius:50%;border:3px solid rgba(27,26,23,.15);border-top-color:var(--gold);animation:mlspin .8s linear infinite}
+.mapwrap.loaded .ml{opacity:0}
+@keyframes mlspin{to{transform:rotate(360deg)}}
 .rev{border:1px dashed var(--line);padding:46px 28px;text-align:center;color:var(--mut)}
 .rev .btn{margin-top:22px}
 .field{display:grid;gap:14px}
@@ -69,7 +75,7 @@ footer{padding:34px 0;border-top:1px solid var(--line);color:var(--mut);font-siz
 footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 #toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,30px);background:var(--gold);color:var(--bg);padding:12px 22px;opacity:0;transition:.3s;pointer-events:none;z-index:20}
 #toast.on{opacity:1;transform:translate(-50%,0)}
-@media (max-width:760px){nav a:not(.btn){display:none}.two{grid-template-columns:1fr}section{padding:70px 0}.map{height:320px}}
+@media (max-width:760px){nav a:not(.btn){display:none}.two{grid-template-columns:1fr}section{padding:70px 0}.map{height:320px}.mapwrap{height:320px}}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important;animation-delay:0s!important}}
 @media (max-width:760px){.hero{height:auto;min-height:380px}.hero:before{background:radial-gradient(ellipse 120% 120% at 50% 52%,rgba(246,241,230,.26) 0%,rgba(246,241,230,.17) 55%,rgba(246,241,230,.1) 100%)}.hero .btn:not(.solid){color:#fff;border-color:#fff}.hero .btn:not(.solid):hover{background:#fff;color:var(--ink)}}
 .hero video::-webkit-media-controls,.hero video::-webkit-media-controls-start-playback-button,.hero video::-webkit-media-controls-panel{display:none!important;-webkit-appearance:none}
@@ -94,6 +100,7 @@ header.open .mnav{opacity:1;visibility:visible;transform:none;transition:opacity
 .mnav a:active{color:var(--gold)}
 }
 .hero .cta{animation-delay:.4s;animation-duration:.6s}
+@media (min-width:761px){.hero>div{transform:translateY(70px)}}
 
 @media (max-width:760px){#suites .grid{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;margin:0 -24px;padding:0 24px 10px;scroll-padding-left:24px;scrollbar-width:none}#suites .grid::-webkit-scrollbar{display:none}#suites .card{flex:0 0 80%;max-width:340px;scroll-snap-align:start}}
 @media (min-width:761px){#suites .grid{grid-template-columns:repeat(6,1fr);gap:28px}#suites .card{grid-column:span 2}#suites .card:nth-child(-n+2){grid-column:span 3}#suites .card:nth-child(-n+2) .ph{aspect-ratio:16/10}#suites .card:nth-child(-n+2) h3{font-size:34px}#suites .card:nth-child(-n+2) div.b{padding:26px 30px 30px}}
@@ -130,7 +137,7 @@ img.ph{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
 <ul class="dist"><li><span>Ermou Street</span><span>200 m</span></li><li><span>Syntagma Square</span><span>350 m</span></li><li><span>Monastiraki Square</span><span>500 m</span></li><li><span>Acropolis Museum</span><span>1 km</span></li><li><span>Parthenon</span><span>1.5 km</span></li></ul>
 <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Perikleous+13+Athens+10563" target="_blank" rel="noopener">Perikleous 13 in Google Maps</a> <a class="btn" style="margin-top:10px" href="https://www.google.com/maps/search/?api=1&query=Romvis+20+Athens+10562" target="_blank" rel="noopener">Romvis 20 in Google Maps</a>
 </div>
-<iframe class="map" title="Map of Perikleous 13, Athens" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Perikleous+13,+Athens+10563&output=embed"></iframe>
+<div class="mapwrap" id="mapwrap"><div class="ml" aria-hidden="true"></div><iframe class="map" title="Map of Perikleous 13, Athens" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Perikleous+13,+Athens+10563&output=embed"></iframe></div>
 </div></section>
 
 <section id="reviews"><div class="wrap">
@@ -177,6 +184,7 @@ window.addEventListener('pageshow',go);
 ['pointerdown','touchstart','touchend','click','keydown','scroll','mousemove'].forEach(function(e){addEventListener(e,function(){if(v.paused)go()},{passive:true})})})();
 </script>
 <script>
+(function(){var w=document.getElementById('mapwrap'),f=w&&w.querySelector('iframe.map');if(!f)return;f.addEventListener('load',function(){w.classList.add('loaded')})})();
 (function(){var h=document.querySelector('header'),b=h&&h.querySelector('.menu');if(!b)return;
 function set(o){h.classList.toggle('open',o);b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'Close menu':'Open menu')}
 b.addEventListener('click',function(e){e.stopPropagation();set(!h.classList.contains('open'))});
