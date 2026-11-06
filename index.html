@@ -18,7 +18,8 @@ body{margin:0;background:var(--bg);color:var(--ink);font:300 17px/1.65 Jost,syst
 h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;margin:0;line-height:1.1}
 a{color:inherit;text-decoration:none}
 .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:rgba(255,255,255,.93);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:transparent;backdrop-filter:none;border-bottom:1px solid transparent;transition:background .3s ease,backdrop-filter .3s ease,border-color .3s ease}
+header.scrolled{background:rgba(255,255,255,.93);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 header .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
 .mini{display:flex;align-items:center;gap:10px;font-family:"Cormorant Garamond",Georgia,serif;font-size:20px;letter-spacing:.04em}
 .mini img{height:46px;width:auto;display:block}
