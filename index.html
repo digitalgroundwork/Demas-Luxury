@@ -108,6 +108,14 @@ header.open .mnav{opacity:1;visibility:visible;transform:none;transition:opacity
 .mnav a{display:block;padding:15px 2px;font:400 22px "Cormorant Garamond",serif;border-bottom:1px solid var(--line)}.mnav a:last-child{border:0}
 .fab{right:16px;left:16px;text-align:center}.cta .btn{padding:14px 24px}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important;transition-delay:0s!important}.shine,.hg{display:none}.hero video{animation:none}html{scroll-behavior:auto}}
+.att{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(12px,1.6vw,22px);margin-top:clamp(50px,7vw,90px)}
+.att li{position:relative;padding-bottom:18px}.ai{position:relative;aspect-ratio:4/5;overflow:hidden;background:linear-gradient(160deg,#2c2924,#1f1d1a);margin-bottom:16px}
+.ai img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}.att li:hover .ai img{transform:scale(1.06)}
+.ai.noimg::after{content:"";position:absolute;inset:14px;border:1px solid rgba(201,171,106,.25)}
+.att h3{font-size:clamp(19px,1.7vw,24px);color:#efe8da;min-height:2.2em;line-height:1.1}.att p{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-top:6px;font-size:13.5px;color:#b9b19f}.att b{font:400 22px "Cormorant Garamond",serif;color:#e4cf9c}
+.att li::before,.att li::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:rgba(239,232,218,.14)}.att li::after{width:var(--w);background:#c9ab6a;transform:scaleX(0);transform-origin:left;transition:transform 1.6s var(--ease) .3s}.att.in li::after{transform:none}
+.attn{font-size:12.5px;color:#8d8678;margin-top:22px}
+@media (max-width:900px){.att{grid-template-columns:repeat(2,1fr)}.att li:last-child{grid-column:1/3}.att li:last-child .ai{aspect-ratio:16/9}}
 </style>
 </head>
 <body>
@@ -129,10 +137,12 @@ header.open .mnav{opacity:1;visibility:visible;transform:none;transition:opacity
 <section id="location" class="ath"><div class="wrap two"><div>
 <p class="eyebrow">Location</p><h2 class="words">Where you will stay</h2>
 <p class="lead rv">Four of the suites are at Perikleous 13, in the walkable core of Athens. Romvis D4 and Romvis D9 are a few minutes away at Romvis 20, close to Monastiraki.</p>
-<ul class="rows"><li style="--w:13.3%"><span>Ermou Street</span><b>200 m</b></li><li style="--w:23.3%"><span>Syntagma Square</span><b>350 m</b></li><li style="--w:33.3%"><span>Monastiraki Square</span><b>500 m</b></li><li style="--w:66.7%"><span>Acropolis Museum</span><b>1 km</b></li><li style="--w:100%"><span>Parthenon</span><b>1.5 km</b></li></ul>
+
 <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Perikleous+13+Athens+10563" target="_blank" rel="noopener">Perikleous 13 in Google Maps</a><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Romvis+20+Athens+10562" target="_blank" rel="noopener">Romvis 20 in Google Maps</a></div>
 <div class="mapwrap" id="mapwrap"><div class="ml" aria-hidden="true"></div><iframe class="map" title="Map of Perikleous 13, Athens" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Perikleous+13,+Athens+10563&output=embed"></iframe></div>
-</div></section>
+</div>
+<div class="wrap"><ul class="att rv"><li style="--w:13.3%"><div class="ai"><img src="img/ermou-street.jpg" alt="Ermou Street" loading="lazy" onerror="this.parentNode.classList.add('noimg');this.remove()"></div><h3>Ermou Street</h3><p><b>200 m</b><span>~3 min walk</span></p></li><li style="--w:23.3%"><div class="ai"><img src="img/syntagma-square.jpg" alt="Syntagma Square" loading="lazy" onerror="this.parentNode.classList.add('noimg');this.remove()"></div><h3>Syntagma Square</h3><p><b>350 m</b><span>~5 min walk</span></p></li><li style="--w:33.3%"><div class="ai"><img src="img/monastiraki-square.jpg" alt="Monastiraki Square" loading="lazy" onerror="this.parentNode.classList.add('noimg');this.remove()"></div><h3>Monastiraki Square</h3><p><b>500 m</b><span>~6 min walk</span></p></li><li style="--w:66.7%"><div class="ai"><img src="img/acropolis-museum.jpg" alt="Acropolis Museum" loading="lazy" onerror="this.parentNode.classList.add('noimg');this.remove()"></div><h3>Acropolis Museum</h3><p><b>1 km</b><span>~13 min walk</span></p></li><li style="--w:100.0%"><div class="ai"><img src="img/parthenon.jpg" alt="Parthenon" loading="lazy" onerror="this.parentNode.classList.add('noimg');this.remove()"></div><h3>Parthenon</h3><p><b>1.5 km</b><span>~19 min walk</span></p></li></ul><p class="attn rv">Distances and walking times from Perikleous 13 are approximate, at an easy pace.</p></div>
+</section>
 <section id="reviews" class="revs"><div class="wrap">
 <p class="eyebrow">Reviews</p><h2 class="words">Have you stayed with us? Share your experience!</h2>
 <div class="stars">★★★★★</div><p class="score"><b>5.0</b> on Google</p>
